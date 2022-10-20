@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Professor Classweb</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        
+        /* The Modal (background) */
+        .regform {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          border-radius: 25px;
+          padding: 20px;
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal Content */
+        .regform-content {
+          background-color: #fefefe;
+          border-radius: 25px;
+          padding: 20px;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 50%;
+          height:50%;
+        }
+        
+        /* The Close Button */
+        .close {
+          color: #161616;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: rgb(255, 0, 0);
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .topnav {
+            background-color: #161616;
+            /* border-radius: 10px; */
+            padding: 30px;
+            overflow: hidden;
+            /* display:flex; */
+            justify-content: space-around;
+            align-items: center;
+        }
+        .logo img{
+            width: 70px; 
+            height: 70px;
+            position: absolute;
+            border-radius: 5px;
+            transform: translate(-20%,-20%);
+        }
+        
+        .button1{
+        	display: block;
+			margin: 0 auto;
+			width: $inputW;
+			height: $btnH;
+			border-radius: 30px;
+			color: #fff;
+			font-size: 15px;
+			background-color: #008CBA;
+			padding: 12px 28px;
+			border: 2px solid #008CBA;
+        }
+        
+        .button2{
+        	display: block;
+			margin: 0 auto;
+			width: $inputW;
+			height: $btnH;
+			border-radius: 30px;
+			color: #008CBA;
+			font-size: 16px;
+			cursor: pointer;
+			background-color: #fff;
+			padding: 7px 15px;
+			border: 2px solid #008CBA;
+        }
+
+        body {
+            /* background-image: url("uoi.jpg"); */
+            background-repeat: no-repeat;
+            min-height: 200%;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        </style>
+</head>
+<body>
+    <div class="topnav">
+        <span class="logo">
+            <a th:href="@{/}">
+                <img th:src="@{/logouoi.jpg}" alt="logo"/>
+            </a>
+        </span>
+
+        <h2 style="text-align: center;  color: #fefefe;">
+            <b>Welcome to Professor Classweb - UOI</b>
+        </h2>
+        
+    </div>
+    <div class="container text-center" style="position: absolute; left: 50%; transform: translate(-50%,50%);">
+    <!-- <div>
+        <h1>Welcome to Classweb - UOI</h1>
+    </div> -->
+    <div>
+        <form th:action="@{/login}" method="post" style="max-width: 500px; margin: 0 auto; background-color: lightgrey; border-radius: 12px;">
+            <div class="border border-secondary p-3 rounded-10" style="border-radius: 12px;">
+            	<label class="col-4 col-form-label" style="color:#008CBA;">Sign in</label>
+            	<div th:if="${message}" class="alert alert-success text-center"  style="max-width: 500px;margin-left:auto;margin-right:auto;">
+						[[${message}]]
+ 				</div>
+                <p>
+                    <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus />
+                </p>
+                <p>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required />
+                </p>
+                <p>
+                    <input type="submit" value="Sign in" class="button1"/>
+                </p>
+            </div>
+        </form>
+    </div>
+        <h6 style="color:#008CBA;padding-top: 1.33em;">Don't have an account?
+        <!--  <button id="register_form" class="button2" style="padding-top: 0.5em;">Sign up</button>-->
+        <a th:href="@{/register}" class="btn button2" style="width:100px;height:45px;padding: 7px 15px;">Sign up</a>
+        </h6>
+    </div>
+
+
+    <!-- Trigger/Open The Register Form -->
+    <!-- The register form -->
+    <div id="myRegForm" class="regform">
+    <!-- Popup register form content -->
+    <div class="regform-content">
+        <span class="close">&times;</span>
+        <h2 style="text-align: center;">
+            You can sign up here,
+        </h2>
+       	<div th:if="${error_message}" class="alert alert-danger text-center">
+     			[[${error_message}]]
+    	 </div>
+        <form th:action="@{/process_register}" method="post" style="max-width: 700px; margin: 0 auto; background-color: lightgrey; border-radius: 12px;">
+            <div class="border border-secondary p-3 rounded-12" style="border-radius: 12px; text-align: center;">
+                <p>
+                    <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus />
+                </p>
+                <p>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required />
+                </p>
+                <p>
+                    <input type="text" name="firstName" class="form-control" placeholder="Fisrt Name" required />
+                </p>
+                <p>
+                    <input type="text" name="LastName" class="form-control" placeholder="Last Name" required />
+                </p>
+                <p>
+                    <input type="submit" value="Sign up" class="button1" style="margin:auto;" />
+                </p>
+            </div>
+        </form>
+    </div>
+
+    </div>
+
+    <!-- SCRIPT FOR THE POPUP REGISTRATION FORM -->
+    <script>
+        // Get the modal
+        var popupReg = document.getElementById("myRegForm");
+
+        // Get the button that opens the popup
+        var btn = document.getElementById("register_form");
+
+        // Get the <span> element that closes the popup
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the popup 
+        btn.onclick = function() {
+            popupReg.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the popup
+        span.onclick = function() {
+            popupReg.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the popup, close it
+        window.onclick = function(event) {
+        if (event.target == popupReg) {
+            popupReg.style.display = "none";
+            }
+        }
+    </script>
+    
+    
+</body>
+</html>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Course Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" th:href="@{/users}" >Professor ClassWeb</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	    	<li class="active"><a>Statistics</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	   		<li><a style="color:white" th:text="${fullname}"></a></li>
+	    	<li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    	</ul>
+	  </div>
+	</nav>
+<div class="container text-center">
+     <div>
+        <h1>Course Statistics</h1>
+    </div>
+     
+    <div>
+        <table class="table table-striped table-bordered" style="width:50%;margin-left:auto;margin-right:auto;">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="width:30%;background-color:#FFFFFF">Max Grade</th>
+                    <td th:text="${student_max}" style="background-color:#FFFFFF">Max Grade</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E5E4E2">Min Grade</th>
+                    <td th:text="${student_min}" style="background-color:#E5E4E2">Min Grade</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#FFFFFF">Mean Of Grades</th>
+                    <td th:text="${mean}" style="background-color:#FFFFFF">Mean Of Grades</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E5E4E2">Standard Deviation</th>
+                    <td th:text="${standard_deviation}" style="background-color:#E5E4E2">Standard Deviation</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#FFFFFF">Variance</th>
+                    <td th:text="${variance}" style="background-color:#FFFFFF">Variance</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E5E4E2">Percentiles</th>
+                    <td th:text="${percentiles}" style="background-color:#E5E4E2">Percentiles</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#FFFFFF">Skewness</th>
+                    <td th:text="${skewness}" style="background-color:#FFFFFF">Skewness</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#E5E4E2">Kurtosis</th>
+                    <td th:text="${kurtosis}" style="background-color:#E5E4E2">Kurtosis</td>
+                </tr>
+                <tr>
+                    <th style="background-color:#FFFFFF">Median</th>
+                    <td th:text="${median}" style="background-color:#FFFFFF">Median</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>

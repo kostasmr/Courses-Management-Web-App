@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add a Student</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" th:href="@{/users}" >Professor ClassWeb</a>
+	    </div>
+	    <ul class="nav navbar-nav navbar-right">
+	   		<li><a style="color:white" th:text="${fullname}"></a></li>
+	    	<li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    	</ul>
+	  </div>
+	</nav>
+    <div class="container">
+        <div class="text-center">
+            <h1>Add a Student</h1>
+        </div>
+         <div th:if="${error_message}" class="alert alert-danger text-center" style="max-width: 300px; margin: 0 auto;">
+     			[[${error_message}]]
+    	 </div>
+        <form action="#" th:action="@{'/process_addStudent/' + ${courseId}}" th:object="${student}"
+            method="post" style="max-width: 400px; margin: 0 auto;">
+        <div class="m-3">             
+            <div class="form-group row">
+                <label class="col-4 col-form-label" style="text-align: left;">First Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{firstName}" class="form-control"
+                            required />
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Last Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{lastName}" class="form-control"
+                            required />
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Email: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{studentEmail}" class="form-control"
+                            required />
+                </div>
+            </div>
+             
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2">Add</button>
+                <button type="button" onclick="cancelForm()" class="btn btn-secondary m-2">Cancel</button>
+            </div>
+        </div>
+        
+        </form>
+     </div>
+     <script type="text/javascript">
+     	function cancelForm(){
+     		window.location = "[[@{'/browseStd/' + ${courseId}}]]";
+     	}
+     </script>
+     </body>
+     </html>

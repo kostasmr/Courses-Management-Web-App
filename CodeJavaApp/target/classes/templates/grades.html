@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Grades</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" th:href="@{/users}" >Professor ClassWeb</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	    	<li class="active"><a>Grades</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	   		<li><a style="color:white" th:text="${fullname}"></a></li>
+	    	<li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    	</ul>
+	  </div>
+	</nav>
+<div class="container text-center">
+
+     <div>
+        <h1>Grades</h1>
+    </div>
+     <div th:if="${message}" class="alert alert-success text-center">
+     	[[${message}]]
+     </div>
+    <div>
+        <table class="table table-striped table-bordered" style="width:100%;margin-left:auto;margin-right:auto;">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:10%;">Student ID</th>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:20%;">First Name</th>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:20%;">Last Name</th>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:10%;">Project Grade</th>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:10%;">Exams Grade</th>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:10%;">Final Grade</th>
+                    <th class="text-center" style="color:white;background-color:#3A3B3C;width:11%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="students: ${GradesList}">
+                    <td th:text="${students.getStudentsId()}">Student ID</td>
+                    <td th:text="${students.getFirstName()}">First Name</td>
+                    <td th:text="${students.getLastName()}">Last Name</td>
+                    <td th:text="${students.getProjectGrade()}">Project Grade</td>
+                    <td th:text="${students.getExamsGrade()}">Exams Grade</td>
+					<td th:text="${students.getCourseGrade()}">Final Grade</td>
+					<td>             
+	                    <a th:href="@{'/editGrades/' + ${students.getStudentsId()}}" class="btn btn-success">Edit Grades</a>
+	                    &nbsp;&nbsp;&nbsp;
+                   	</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
