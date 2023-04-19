@@ -1,5 +1,5 @@
 # Courses-Management-Web-App
-A web app that you can sign up as user and you can handle your courses,students of each course and grades of each student.
+A web app for instructors that they can sign up as a user and handle their courses, students of each course and update the grades.
 
 How to run it:
 
